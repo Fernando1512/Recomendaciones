@@ -1,0 +1,103 @@
+<html>
+<head>
+
+<link rel="stylesheet" type="text/css" href="css/estiloeditar.css">
+<style>
+body
+{
+margin: 0;
+  padding: 0;
+  background: url("imagenes/fondo3.jpg") no-repeat center top;
+  background-size: cover;
+  font-family: sans-serif;
+  height: 100vh;
+}
+
+</style>
+
+</head>
+
+<body>
+	<h1 align="center">Alumnos registrados<a  href="inicio.php" ><button  type="submit" name="register" class="formulario__btn">Regresar</button></a></h1>
+
+
+<div class="arriba">
+
+
+
+<table border="1" align="center">
+
+	<form name="Mantenimiento" action="mantenimiento.php" method="post">
+
+		<tr><td colspan="4"><label>Datos Alumnos</label></td></tr>
+		<tr>
+			<td><label>Codigo</label></td><td><input type="text" value="" maxlength="7" name="txtcodigo" size="30"></td>
+			<td><label>Nombre</label></td><td><input type="text" value="" maxlength="50" name="txtnombre" maxlength="2" size="30"></td>
+		</tr>
+		<tr>
+			<td><label>Apellidos</label></td><td><input type="text" value="" maxlength="50" name="txtapellidos" size="30"></td>
+			<td><label>Semestre</label></td><td><input type="text" value="" maxlength="9"  name="txtsemestre" size="30"></td>
+		</tr>
+		<tr>
+			<td><label>Materias cursadas</label></td><td><input type="text" value="" maxlength="100" name="txtM_Cursadas" size="30"></td>
+			<td><label>Materias en curso</label></td><td><input type="text" value="" maxlength="100" name="txtM_Curso" size="30"></td>
+
+		</tr>
+		<tr>
+			<td><label>Correo</label></td><td><input type="text" value="" maxlength="100" size="30" name="txtcorreo"></td>
+		</tr>
+		<tr><td colspan="4" align="center">
+		<input type="submit" value="Modificar" name="modificardatos" >
+		<input type="submit" value="Eliminar" name="eliminardatos">
+		</td>
+		</tr>
+	</form>
+</table>
+
+</div>
+<div>
+
+
+<table border="1" align="center">
+<tr ><td align="center" colspan="8"><label>Listado de Alumnos </label></td></tr>
+
+<tr><td><label>Codigo</label></td>
+	<td><label>Nombre</label></td>
+	<td><label>Apellidos</label></td>
+	<td><label>semestre</label></td>
+	<td><label>Materias cursadas</label></td>
+	<td><label>Materias en curso</label></td>
+	<td><label>Correo</label></td>
+</tr>
+
+<?php 
+$sql="SELECT * FROM datos";
+$result=mysqli_query($conn,$sql);
+
+while($mostrar=mysqli_fetch_array($result))
+{
+?>
+<tr> <td><?php echo $mostrar['id'] ?>
+	<td><?php echo $mostrar['nombres'] ?>
+	<td><?php echo $mostrar['apellidos'] ?>
+	<td><?php echo $mostrar['semestre'] ?>
+	<td><?php echo $mostrar['materias_cursadas'] ?>
+	<td><?php echo $mostrar['materias_en_curso'] ?>
+	<td><?php echo $mostrar['email'] ?>
+
+</tr>
+<?php
+}
+	
+?>
+
+
+
+
+</table>
+
+</div>
+</form>
+
+</body>
+</html>
